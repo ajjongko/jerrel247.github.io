@@ -1,0 +1,1086 @@
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap");
+@import url("https://fonts.cdnfonts.com/css/planet-n");
+@import url("https://fonts.cdnfonts.com/css/do-futuristic");
+
+:root {
+  --header-height: 3rem;
+
+  --hue: 240;
+  --first-color: #5959c7;
+  --first-color-light: #7373d9;
+  --first-color-alt: #4040bf;
+  --title-color: #e5e5f7;
+  --text-color: #ccccd9;
+  --text-color-light: #b3b3c2;
+  --body-color: #2f2f43;
+  --container-color: #0d0d33;
+
+  --body-font: "Planet N Compact", sans-serif;
+  --biggest-font-size: 3rem;
+  --big-font-size: 1.5rem;
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1rem;
+  --normal-font-size: 0.938rem;
+  --small-font-size: 0.813rem;
+
+  --font-regular: 400;
+  --font-semi-bold: 600;
+  --font-bold: 700;
+
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+@media screen and (min-width: 1150px) {
+  :root {
+    --biggest-font-size: 5.5rem;
+    --big-font-size: 2.75rem;
+    --h1-font-size: 2.25rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1.125rem;
+    --small-font-size: 0.875rem;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body,
+input,
+textarea,
+button {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background-color: #0d0d33;
+  color: var(--text-color);
+}
+
+body {
+  background-color: var(--body-color);
+  color: var(--text-color);
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+input,
+button,
+textarea {
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  color: var(--text-color);
+}
+
+h1,
+h2 {
+  color: var(--title--color);
+  font-weight: var(--font-semi-bold);
+}
+
+p {
+  line-height: 130%;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+  overflow: hidden;
+}
+
+.section {
+  padding-block: 5rem 2rem;
+}
+
+.section__title {
+  text-align: center;
+  font-weight: var(--font-bold);
+  margin-bottom: 2rem;
+  font-family: "Planet N Expanded Italic", sans-serif;
+}
+
+.main {
+  overflow: hidden;
+}
+
+/* Preloader */
+.overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000; /* para sure naas top layer */
+  display: flex;
+  pointer-events: auto;
+  overflow: hidden;
+}
+
+.bar {
+  width: 10vw;
+  height: 105vh;
+  background: var(--text-color);
+}
+
+.counter {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10001; /* nasa taas sa overlay */
+  color: var(--body-color);
+  padding: 0.2em 0.4em;
+  font-size: 20vw;
+  font-family: "DO Futuristic", sans-serif;
+  pointer-events: none;
+}
+
+/* header and nav */
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  z-index: var(--z-fixed);
+  font-family: "Planet N 3D Italic", sans-serif;
+}
+
+.nav {
+  position: relative;
+  height: var(--header--height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: var(--z-fixed);
+  max-width: 100%;
+}
+
+.nav__logo {
+  color: var(--title--color);
+  font-weight: var(--font-bold);
+  width: 50px;
+  height: auto;
+}
+
+.nav__toggle,
+.nav__close {
+  font-size: 1.5rem;
+  color: var(--title--color);
+  cursor: pointer;
+}
+
+/* navigation for mobile */
+@media screen and (max-width: 1150px) {
+  .nav__menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    background-color: hsla(var(--hue), 70%, 4%, 0.2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    width: 100%;
+    padding: 7rem 3rem;
+    transition: right 0.4s;
+    height: max-content;
+  }
+}
+
+.nav__list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 3rem;
+  font-family: "Planet N Condensed", sans-serif;
+  justify-content: center;
+}
+
+.nav__link {
+  position: relative;
+  color: var(--title--color);
+  font-weight: var(--font-semi-bold);
+  transition: color 0.4s;
+}
+
+.nav__link::after {
+  content: "";
+  width: 0;
+  height: 2px;
+  background-color: var(--first-color-alt);
+  position: absolute;
+  left: 0;
+  bottom: -0.5rem;
+  transition: width 0.3s;
+}
+
+.nav__link:hover {
+  color: var(--first-color-light);
+}
+
+.nav__link:hover::after {
+  width: 30%;
+}
+
+.nav__close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+}
+
+.show-menu {
+  right: 0;
+}
+
+.blur-header::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: hsla(var(--hue), 70%, 4%, 0.2);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+/* home */
+.home__scroll {
+  padding-bottom: 4rem;
+  padding-top: 2rem;
+}
+
+.home__scroll {
+  color: var(--title-color);
+  display: inline-flex;
+  column-gap: 0.5rem;
+  align-items: center;
+  justify-self: center;
+}
+
+.iam,
+.home__scroll-text {
+  font-family: var(--body-font);
+  color: var(--first-color-alt);
+}
+
+.home__scroll {
+  color: var(--title-color);
+  display: inline-flex;
+  column-gap: 0.5rem;
+  align-items: center;
+  justify-self: center;
+}
+
+.home__scroll-box {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+  overflow: hidden;
+}
+
+.home__scroll-text {
+  font-weight: var(--font-semi-bold);
+}
+
+.home__scroll-box i {
+  animation: scroll-down 3s infinite;
+}
+
+@keyframes scroll-down {
+  0% {
+    transform: translateY(-1rem);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0.6rem);
+    opacity: 0;
+  }
+}
+
+.home__name {
+  font-size: 80px;
+  font-weight: var(--font-bold);
+  margin-bottom: 1.25rem;
+  font-family: "Planet N Compact", sans-serif;
+}
+
+.home__img {
+  width: 700px; /* Adjust width as needed */
+  height: 700px; /* Ensure height matches width for a circle */
+  mask-image: linear-gradient(to bottom, #050526, 80%, transparent 100%);
+  /* border-radius: 100%; /* Change to 50% for a rounded image */
+  object-fit: cover; /* Ensures the image covers the area nicely */
+  margin-left: 200px;
+}
+
+/*.home__profession {
+  position: relative;
+  font-size: var(--big-font-size);
+  color: var(--text-color);
+  font-family: "Planet N Compact Expanded", sans-serif;
+}
+
+.home__profession::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.5rem;
+  width: 25%;
+  height: 3px;
+  background-color: var(--text-color);
+}
+
+.iam {
+  color: var(--first-color-alt);
+}*/
+
+.social-links a {
+  color: var(--first-color-alt);
+  font-size: 1.5rem;
+  transition: color 0.3s;
+  width: 50px;
+}
+
+.social-links a:hover {
+  color: var(--first-color-light);
+}
+
+/* Typing Effect */
+.home__profession {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid;
+  font-family: inherit;
+  font-size: inherit;
+  animation: typing 3s steps(30, end), blink-cursor 0.75s step-end infinite;
+}
+
+/* Keyframes for typing */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Blinking cursor */
+@keyframes blink-cursor {
+  50% {
+    border-color: transparent;
+  }
+}
+
+/* Additional styling if needed */
+.fst-italic {
+  font-style: italic;
+}
+
+.iam {
+  color: #0000ff; /* Adjust color if needed */
+  font-size: 1.2em; /* Adjust font size if needed */
+}
+
+/*button*/
+.button {
+  display: inline-flex;
+  justify-content: center;
+  background-color: var(--first-color);
+  color: var(--title--color);
+  font-weight: var(--font-semi-bold);
+  padding: 1.25rem 2rem;
+  transition: background-color 0.4s;
+  border-radius: 7px;
+}
+
+.button:hover {
+  background-color: var(--first-color-alt);
+}
+
+.project {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  background-color: var(--container-color);
+  margin-bottom: 20px;
+}
+
+.project__item img {
+  width: 100%; /* Adjust this value as needed */
+  height: auto; /* Keeps the aspect ratio */
+  max-width: 100px; /* Or set a fixed width if necessary */
+  border-radius: 8px; /* Matches the card's rounded corners */
+  object-fit: contain; /* Ensures images fit within the defined width/height */
+  margin-top: 10px;
+}
+
+.project__card {
+  background-color: var(--first-color-alt);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 300%;
+  max-width: 100%;
+  margin: auto;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.project__link {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--body-color);
+  padding: 1.5rem 1rem;
+  color: var(--text-color);
+  transition: transform 0.5s;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.project__title {
+  text-align: center;
+  color: burlywood;
+  margin-bottom: 0.75rem;
+  font-family: "Planet N Compact", sans-serif;
+  font-size: 1.25rem;
+}
+
+.project_description {
+  margin-bottom: 1.5rem;
+  text-align: justify;
+  color: var(--text-color-light);
+  font-size: 0.9rem;
+}
+
+.project__link:hover {
+  transform: translateY(-1rem);
+}
+
+.project__link i {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  color: var(--first-color-light);
+  transition: transform 0.5s;
+}
+
+.project__link:hover i {
+  transform: translateX(0.5rem);
+}
+
+.cert,
+.education {
+  border-color: #4040bf;
+}
+
+.card {
+  border: 1px solid var(--body-color);
+  border-radius: 20px;
+}
+
+.project__link i {
+  font-size: 1.25rem;
+}
+
+/*my info*/
+/*about*/
+.about__container {
+  row-gap: 3rem;
+}
+
+.about__title {
+  position: relative;
+  color: var(--first-color-light);
+  font-family: "Planet N Compact", sans-serif;
+}
+
+.about {
+  row-gap: 3rem;
+}
+
+.about__description {
+  margin-bottom: 2rem;
+  text-align: justify;
+}
+
+.about__description b {
+  color: var(--first-color-light);
+}
+
+.about__img {
+  width: 500px;
+  height: 400px;
+  position: relative; /* Ensure the element is positioned */
+  top: -50px; /* Adjust the value to move the image more or less upwards */
+  justify-self: center;
+  mask-image: linear-gradient(
+    to bottom,
+    hsla(var(--hue), 40%, 16%) 60%,
+    transparent 200%
+  );
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 50px;
+}
+
+.edu::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: var(--container-color);
+  z-index: -1;
+  transition: 0.5s;
+  border-radius: 15px;
+}
+.edu:hover::before {
+  width: 100%;
+}
+
+.about__img {
+  place-items: center;
+  transition: transform 0.4s;
+}
+
+.about__img:hover {
+  transform: translateY(-0.5rem);
+}
+
+.about__button {
+  width: 100%;
+}
+
+/*education*/
+.edu {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+/* Hover Effect with Color Change and Movement */
+.edu:hover {
+  background-color: var(
+    --first-color-alt,
+    #e0f7fa
+  ); /* Adjust the color as needed */
+  color: #333;
+  transform: translateY(-5px); /* Moves the section up */
+}
+
+/* Active/Click Effect */
+.edu:active {
+  background-color: var(
+    --first-color-dark,
+    #b2ebf2
+  ); /* Adjust the color as needed */
+  color: #222;
+  transform: translateY(2px); /* Subtle press-down effect */
+}
+
+/* Specific Text Styling */
+.ed_school,
+.ed_course,
+.ed__date,
+.ed__high,
+.mem {
+  color: var(--text-color, #555);
+}
+
+.ed__date {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--text-color-light, #888);
+}
+
+.ed__high b {
+  color: var(--first-color-alt, #00796b);
+}
+
+/* Skills Section Styles */
+.skills__img {
+  width: 50px;
+  margin-bottom: 0.5rem;
+}
+
+.skills__name {
+  font-size: var(--small-font-size);
+  color: var(--text-color);
+}
+
+.skills__box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s, color 0.3s;
+  margin: 0 1rem; /* Spacing between skill items */
+}
+
+.skills__box:hover {
+  transform: translateY(-0.5rem);
+  color: var(--highlight-color); /* Customize this color for hover */
+}
+
+.eskel {
+  padding-left: 1rem;
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9); /* Dark background overlay */
+  overflow: auto;
+}
+
+/* Wrapper for centering and adding a border */
+.modal-content {
+  display: block;
+  max-width: 80%; /* Maximum width of the image */
+  max-height: 80vh; /* Maximum height of the image relative to the viewport */
+  width: auto; /* Adjusts width to maintain aspect ratio */
+  height: auto; /* Adjusts height to maintain aspect ratio */
+  margin: auto; /* Center the image horizontally */
+  border: 5px solid var(--container-color); /* White border around the image */
+  border-radius: 10px; /* Rounded corners for the border */
+  box-shadow: 0 0 20px var(--first-color-light); /* Slight glow effect */
+  animation: zoom 0.6s; /* Smooth zoom-in effect */
+}
+
+/* Ensure modal content wrapper allows for centering */
+.modal-content-wrapper {
+  display: flex;
+  align-items: center; /* Center the content vertically */
+  justify-content: center; /* Center the content horizontally */
+  height: 100%;
+  padding: 20px; /* Padding to prevent close button overlap */
+}
+
+/* Close button styles */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 25px; /* Top right corner of the modal */
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Close button hover effect */
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+}
+
+/* Zoom animation */
+@keyframes zoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* Adjust the modal image for responsiveness */
+@media (max-width: 768px) {
+  .modal-content {
+    max-width: 90%;
+    max-height: 90%;
+  }
+}
+
+/* certificates */
+
+.cert {
+  padding-left: 1rem;
+}
+.slider {
+  display: flex;
+  padding: 0 35px;
+  align-items: center;
+  justify-content: center;
+}
+
+#right,
+#left {
+  color: var(--text-color);
+}
+.wrapper {
+  display: flex;
+  max-width: 1200px;
+  position: relative;
+}
+.wrapper i {
+  top: 50%;
+  height: 44px;
+  width: 44px;
+  color: #343f4f;
+  cursor: pointer;
+  font-size: 1.15rem;
+  position: absolute;
+  text-align: center;
+  line-height: 44px;
+  background: #fff;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  transition: transform 0.1s linear;
+}
+.wrapper i:active {
+  transform: translateY(-50%) scale(0.9);
+}
+.wrapper i:hover {
+  background: var(--first-color-light);
+}
+.wrapper i:first-child {
+  left: -22px;
+  display: none;
+}
+.wrapper i:last-child {
+  right: -22px;
+}
+.wrapper .carousel {
+  font-size: 0px;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+}
+
+/*.carousel {
+  display: flex;
+  overflow-x: scroll;
+  white-space: nowrap;
+  border-radius: 10px;
+}
+.carousel.dragging {
+  cursor: grab;
+  scroll-behavior: auto;
+}
+.carousel.dragging img {
+  pointer-events: none;
+}
+.carousel img {
+  width: auto;
+  height: 340px;
+  object-fit: cover;
+  user-select: none;
+  margin-left: 14px;
+  width: calc(100% / 3);
+}
+.carousel img:first-child {
+  margin-left: 0px;
+}
+
+@media screen and (max-width: 900px) {
+  .carousel img {
+    width: calc(100% / 2);
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .carousel img {
+    width: 100%;
+  }
+}*/
+
+.carousel-item img {
+  height: 400px; /* Adjust the height as needed */
+  object-fit: contain; /* Makes sure images are contained within the specified height */
+}
+
+/*contact */
+.contact__container {
+  row-gap: 4rem;
+}
+
+.contact__form {
+  position: relative;
+}
+
+.contact__input {
+  padding: 1.25rem;
+  background-color: var(--container-color);
+  color: var(--text-color-alt);
+  font-weight: var(--font-semi-bold);
+  border-color: var(--container-color);
+}
+
+.contact__input::placeholder {
+  color: var(--text-color-light);
+}
+
+.form-control::placeholder {
+  color: var(--text-color);
+}
+.contact__input.form-control {
+  color: #ffffff !important; /* Override dark color with white */
+  background-color: var(--container-color) !important; /* Custom background */
+}
+
+.contact__area {
+  height: 10rem;
+  resize: none;
+}
+
+.contact__button {
+  margin-top: 1rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.contact__social {
+  justify-content: center;
+  column-gap: 2rem;
+}
+
+.contact__social-link {
+  color: var(--title-color);
+  display: inline-flex;
+  column-gap: 0.25rem;
+  align-items: center;
+  transition: color 0.4s;
+}
+
+.contact__social-link i {
+  font-size: 1.5rem;
+}
+
+.contact__social-link span {
+  font-size: var(--small-font-size);
+  font-weight: var(--font-semi-bold);
+}
+
+.contact__social-link:hover {
+  color: var(--first-color-light);
+}
+
+.contact__message {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -2rem;
+  text-align: center; /* Ensures the text itself is centered */
+  font-size: var(--h3-font-size);
+  font-weight: var(--font-semi-bold);
+  color: var(--title-color);
+  padding-bottom: 3px;
+}
+
+/*footer*/
+.footer {
+  background-color: var(--container-color);
+}
+
+.footer__container {
+  padding-block: 3rem 2rem;
+  row-gap: 3rem;
+}
+
+.footer__links {
+  display: flex;
+  justify-content: center;
+  column-gap: 2.5rem;
+}
+
+.footer__link {
+  color: var(--title-color);
+  transition: color 0.4s;
+  font-family: "Planet N Compact", sans-serif;
+}
+
+.footer__link:hover {
+  color: var(--first-color-light);
+}
+
+.footer__copy {
+  color: var(--title-color);
+  font-size: var(--small-font-size);
+  text-align: center;
+}
+
+/*scroll bar*/
+::-webkit-scrollbar {
+  width: 0.6rem;
+  background-color: hsl(var(--hue), 20%, 20%);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--hue), 20%, 30%);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--hue), 20%, 40%);
+}
+
+/*scroll up*/
+.scrollup {
+  position: fixed;
+  right: 1rem;
+  bottom: -50%;
+  background-color: var(--container-color);
+  display: inline-flex;
+  padding: 6px;
+  color: var(--first-color-alt);
+  font-size: 1.25rem;
+  box-shadow: 0 4px 12px hsla(var(--hue), 30%, 8%, 0.3);
+  z-index: var(--z-tooltip);
+  transition: bottom 0.4s, transform 0.4s;
+  border-radius: 20px;
+}
+
+.scrollup:hover {
+  transform: translateY(-0.5rem);
+}
+
+.show-scroll {
+  bottom: 3rem;
+}
+
+/* active link */
+
+.active-link {
+  color: var(--first-color-alt);
+}
+
+.active-link::after {
+  width: 30%;
+}
+
+/* breakpoints 
+/* medium */
+@media screen and (min-width: 300px) {
+  .about__name {
+    text-align: center;
+    padding-bottom: 2rem;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .nav__menu {
+    width: 50%;
+  }
+  .about__name {
+    text-align: left;
+  }
+}
+
+/* large */
+
+@media screen and (min-width: 1150px) {
+  .section {
+    padding-block: 7rem 5rem;
+  }
+
+  .section__title {
+    margin-bottom: 4rem;
+  }
+
+  .nav {
+    height: calc(var(--header-height)+ 2rem);
+    padding: 1rem;
+  }
+
+  .nav__toggle,
+  .nav__close {
+    display: none;
+  }
+
+  .nav__menu {
+    width: max-content;
+  }
+
+  .nav__list {
+    flex-direction: row;
+    column-gap: 5rem;
+  }
+
+  .about__title {
+    margin-bottom: 2rem;
+  }
+
+  .about__img {
+    width: 320px;
+  }
+
+  .about__description {
+    margin-bottom: 3rem;
+  }
+
+  .aboutcont {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    box-sizing: initial;
+  }
+
+  .ed__content {
+    row-gap: 4rem;
+    padding-bottom: 2rem;
+  }
+
+  .ed__school {
+    margin-bottom: 0.5rem;
+  }
+
+  .ed__date {
+    font-size: var(--normal-font-size);
+  }
+
+  .footer__container {
+    padding-block: 3rem;
+    grid-template-columns: repeat(2, max-content);
+    justify-content: space-between;
+  }
+
+  .footer__links {
+    column-gap: 4rem;
+    order: 1;
+  }
+
+  .scrollup {
+    right: 3rem;
+  }
+}
